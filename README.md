@@ -1,3 +1,3 @@
-# SII_In-class-work
+# SIIT_In-class-work
 
-Repository containing the in class work done during the SII Java course 
+Repository containing the in class work done during the SIIT Java course 
