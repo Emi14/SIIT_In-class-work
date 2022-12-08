@@ -25,6 +25,7 @@ public class Main {
         }
         catch (ValidationException e)
         {
+            e.printStackTrace();
             System.out.println("Validation exception occurred: " + e.getMessage());
         }
         catch (Exception e)
@@ -49,8 +50,8 @@ public class Main {
 //        readAndWriteWithFinally();
 //        readAndWriteWithTryWithResources();
 
-        Logger logger = Logger.getLogger(Main.class.getName());
-        validate(logger);
+//        Logger logger = Logger.getLogger(Main.class.getName());
+//        validate(logger);
     }
 
     private static void treeSetPersonExample() {
