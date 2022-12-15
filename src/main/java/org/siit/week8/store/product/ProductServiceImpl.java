@@ -3,9 +3,7 @@ package org.siit.week8.store.product;
 import org.siit.week8.store.product.exception.ProductCreationException;
 import org.siit.week8.store.product.exception.ProductUpdateException;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class ProductServiceImpl implements IProductService {
 
@@ -13,6 +11,23 @@ public class ProductServiceImpl implements IProductService {
 
     public ProductServiceImpl() {
         this.products = new HashMap<>();
+    }
+
+    private static boolean productSatisfiesSearchCriteria(String name, Double minPrice, Double maxPrice,
+                                                          Boolean isInStock, Product product) {
+        if (Objects.nonNull(name) && !product.getName().toLowerCase().contains(name.toLowerCase())) {
+            return false;
+        }
+
+        if (Objects.nonNull(minPrice) && Objects.nonNull(maxPrice)
+                && (product.getPrice() < minPrice || product.getPrice() > maxPrice)) {
+            return false;
+        }
+
+        if (Objects.nonNull(isInStock) && isInStock && product.getStock() <= 0) {
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -44,5 +59,31 @@ public class ProductServiceImpl implements IProductService {
             throw new ProductUpdateException("The price must be positive.");
         }
         product.setPrice(newPrice);
+    }
+
+    public List<Product> searchProductsByNamePriceRangeAndStock(String name,
+                                                                Double minPrice, Double maxPrice, Boolean isInStock) {
+        List<Product> filteredProducts = new ArrayList<>();
+        for (Product product : products.values()) {
+            if (productSatisfiesSearchCriteria(name, minPrice, maxPrice, isInStock, product)) {
+                filteredProducts.add(product);
+            }
+        }
+        return filteredProducts;
+    }
+
+    @Override
+    public List<Product> getAllProducts() {
+        return new ArrayList<>(products.values());
+    }
+
+    @Override
+    public void setDiscount(int discountValuePercentage) {
+        for (Product product : products.values()) {
+            double currentPrice = product.getPrice();
+            double discountValue = discountValuePercentage * currentPrice / 100;
+            product.setPrice(currentPrice - discountValue);
+        }
+
     }
 }
