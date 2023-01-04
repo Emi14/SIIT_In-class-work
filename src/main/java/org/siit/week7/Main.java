@@ -16,25 +16,25 @@ import java.util.logging.Logger;
 public class Main {
     public static void main(String[] args) {
 //        treeSetPersonExample();
-
-        try {
-            System.out.println("Begin try");
-            validatePositiveInteger(12);
-            validatePositiveInteger(-1);
-            System.out.println("End try");
-        }
-        catch (ValidationException e)
-        {
-            e.printStackTrace();
-            System.out.println("Validation exception occurred: " + e.getMessage());
-        }
-        catch (Exception e)
-        {
-            System.out.println("This exception occurred: " + e.getMessage());
-        }
-        finally {
-            System.out.println("This is our finally block");
-        }
+//
+//        try {
+//            System.out.println("Begin try");
+//            validatePositiveInteger(12);
+//            validatePositiveInteger(-1);
+//            System.out.println("End try");
+//        }
+//        catch (ValidationException e)
+//        {
+//            e.printStackTrace();
+//            System.out.println("Validation exception occurred: " + e.getMessage());
+//        }
+//        catch (Exception e)
+//        {
+//            System.out.println("This exception occurred: " + e.getMessage());
+//        }
+//        finally {
+//            System.out.println("This is our finally block");
+//        }
 //        validatePositiveInteger(-1);
 //        System.out.println("Main end.");
 
@@ -50,8 +50,8 @@ public class Main {
 //        readAndWriteWithFinally();
 //        readAndWriteWithTryWithResources();
 
-//        Logger logger = Logger.getLogger(Main.class.getName());
-//        validate(logger);
+        Logger logger = Logger.getLogger(Main.class.getName());
+        validate(logger);
     }
 
     private static void treeSetPersonExample() {
