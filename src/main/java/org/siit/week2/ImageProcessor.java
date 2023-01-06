@@ -1,7 +1,5 @@
 package org.siit.week2;
 
-import org.imgscalr.Scalr;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -45,9 +43,9 @@ public class ImageProcessor {
     public void executeWithLibrary() throws IOException {
         BufferedImage image = readImage("src/main/resources/poza.jpg");
 
-        BufferedImage newImage = Scalr.rotate(image, Scalr.Rotation.CW_90);
+//        BufferedImage newImage = Scalr.rotate(image, Scalr.Rotation.CW_90);
 
-        ImageIO.write(newImage, "jpg", new File("src/main/resources/poza3.jpg"));
+//        ImageIO.write(newImage, "jpg", new File("src/main/resources/poza3.jpg"));
     }
 
     public BufferedImage readImage(String pathname) throws IOException {

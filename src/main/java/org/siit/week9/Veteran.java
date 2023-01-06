@@ -1,9 +1,6 @@
 package org.siit.week9;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NonNull;
+import lombok.*;
 
 @Data
 @Builder
@@ -15,6 +12,9 @@ public class Veteran
 
     @NonNull
     int age;
+
+    @NonNull
+    int experience = 0;
 
     public Veteran(Veteran v) {
         this.name = v.getName();
