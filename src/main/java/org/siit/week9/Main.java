@@ -113,6 +113,15 @@ public class Main
                 .reduce(0, (previousSum, age) -> previousSum + age);
         System.out.println(ageSum);
 
+        Match m1 = new Match(v1, v2);
+        Match m2 = new Match(v1, v3);
+        Match m3 = new Match(v3, v2);
+        List<Match> matches = Arrays.asList(m1, m2, m3);
+
+        List<Veteran> collect = matches.stream()
+                .flatMap(match -> match.getParticipants().stream())
+                .distinct()
+                .collect(Collectors.toList());
     }
 
     private static boolean isNumberPrime(int value)
