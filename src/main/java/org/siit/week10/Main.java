@@ -2,18 +2,37 @@ package org.siit.week10;
 
 import lombok.SneakyThrows;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class Main
 {
-    public static void main(String[] args)
+    public static void main(String[] args) throws InterruptedException
     {
 //        iterators();
+//        thread();
 
-        thread();
+        List<Thread> threadList = new ArrayList<>();
+        Counter counter = new Counter();
+        AtomicCounter atomicCounter = new AtomicCounter();
+
+
+        for(int i=0 ;i<100000; i++)
+        {
+            Runnable randomizer = new Randomizer(counter,atomicCounter);
+            Thread t1 = new Thread(randomizer);
+            threadList.add(t1);
+        }
+        threadList.forEach(thread -> thread.start());
+        for (Thread thread : threadList) {
+            thread.join();
+        }
+
+        System.out.println(counter.getCount());
+        System.out.println(atomicCounter.getCount());
+
+        List<String> stringList= new ArrayList<>();
+        List<String> syncList = Collections.synchronizedList(stringList);
+
     }
 
     private static void iterators()
