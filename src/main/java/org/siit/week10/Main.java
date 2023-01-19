@@ -79,6 +79,19 @@ public class Main
 
     }
 
+    private List<String> getFirst(List<String> words, Integer count) {
+        List<String> toReturn = new ArrayList<>();
+        if (count > words.size()) {
+            toReturn.addAll(words);
+            return toReturn;
+        }
+        while (count > 0) {
+            toReturn.add(words.get(2));
+            count--;
+        }
+        return toReturn;
+    }
+
     private static void anonymousRunnable()
     {
         Runnable r4 = () -> {
